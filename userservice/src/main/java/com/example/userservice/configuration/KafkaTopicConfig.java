@@ -46,4 +46,9 @@ public class KafkaTopicConfig {
     public NewTopic topic4_1() {
         return new NewTopic("user_response", 1, (short) 1);
     }
+
+    @Bean
+    public NewTopic topic5() {
+        return new NewTopic("zookeeper", 1, (short) 1);
+    }
 }

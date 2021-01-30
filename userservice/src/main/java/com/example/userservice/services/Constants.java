@@ -12,6 +12,9 @@ public class Constants {
     @Value("${application.id}")
     Long applicationId;
 
+    @Value("${server.port}")
+    Integer serverPort;
+
     String getApplicationName() {
         return '{' + applicationName + applicationId + '}';
     }
