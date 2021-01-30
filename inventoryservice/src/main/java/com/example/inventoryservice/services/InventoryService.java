@@ -26,7 +26,7 @@ public class InventoryService {
 
     @KafkaListener(topics = TOPIC_NAME, groupId = TOPIC_NAME)
     public void listenGroupFoo(String message) {
-        System.out.println("Received Message in group foo: " + message);
+        System.out.println("Received Message in group: " + message);
         KafkaDto kafkaDto = gson.fromJson(message, KafkaDto.class);
         if (kafkaDto.isRequest()) {
             if (kafkaDto.getOperation().equals("addItem")) {

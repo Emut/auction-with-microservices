@@ -7,6 +7,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +48,7 @@ public class InventoryService {
             response = kafkaDtoCompletableFuture.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-            return null;
+            return Collections.emptyList();
         }
         return gson.fromJson(response.getPayload(), List.class);
     }
