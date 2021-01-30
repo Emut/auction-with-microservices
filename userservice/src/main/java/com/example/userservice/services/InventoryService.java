@@ -66,16 +66,15 @@ public class InventoryService {
     public void listenGroupFoo(String message) {
         System.out.println("Received Message in group: " + message);
         KafkaDto kafkaDto = gson.fromJson(message, KafkaDto.class);
-        if (!kafkaDto.isRequest()) {
-            if (kafkaDto.getOperation().equals("getItems")) {
-                CompletableFuture<KafkaDto> completableFuture = responseWaiters.get(kafkaDto.getId());
-                if (completableFuture != null) {
-                    completableFuture.complete(kafkaDto);
-                } else {
-                    System.out.println("Unexpected response:" + kafkaDto.getId());
-                }
+        if (kafkaDto.isRequest()) {
+            return;
+        }
+        if (kafkaDto.getOperation().equals("getItems")) {
+            CompletableFuture<KafkaDto> completableFuture = responseWaiters.get(kafkaDto.getId());
+            if (completableFuture != null) {
+                completableFuture.complete(kafkaDto);
             }
         }
-
     }
 }
+

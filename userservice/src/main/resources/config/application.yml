@@ -9,3 +9,13 @@ kafka:
   bootstrapAddress: localhost:9092
   group:
     id: 0
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/UserServiceDB
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
