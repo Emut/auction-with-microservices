@@ -25,7 +25,7 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic topic1() {
-        return new NewTopic("inventory", 1, (short) 1);
+        return new NewTopic("inventory", 6, (short) 1);
     }
 
     @Bean
@@ -41,5 +41,9 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic topic4() {
         return new NewTopic("user", 1, (short) 1);
+    }
+    @Bean
+    public NewTopic topic4_1() {
+        return new NewTopic("user_response", 1, (short) 1);
     }
 }

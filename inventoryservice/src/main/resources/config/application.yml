@@ -1,5 +1,9 @@
 kafka:
   bootstrapAddress: localhost:9092
 
+application:
+  name: InventoryService
+  id: 0
+
 server:
   port: 9091

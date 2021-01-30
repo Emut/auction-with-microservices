@@ -1,5 +1,11 @@
 server:
   port: 9090
 
+application:
+  name: UserService
+  id: 0
+
 kafka:
   bootstrapAddress: localhost:9092
+  group:
+    id: 0

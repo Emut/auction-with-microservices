@@ -1,4 +1,4 @@
-package com.example.userservice.dto;
+package com.example.inventoryservice.dto;
 
 public class ItemDto {
     private Long id;
