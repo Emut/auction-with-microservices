@@ -1,10 +1,13 @@
 package com.example.userservice.dto;
 
+import com.example.userservice.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class UserDto {
     private String name;
     private String login;
     private String password;
-    private Boolean isAdmin = false;
+    private boolean isAdmin = false;
     private Long id;
 
     public String getName() {
@@ -31,11 +34,11 @@ public class UserDto {
         this.password = password;
     }
 
-    public Boolean getAdmin() {
+    public boolean getAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(Boolean admin) {
+    public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
 
@@ -46,4 +49,16 @@ public class UserDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @JsonIgnore
+    public User getUser() {
+        User retval = new User();
+        retval.setId(id);
+        retval.setAdmin(isAdmin);
+        retval.setLogin(login);
+        retval.setName(name);
+        retval.setPassword(password);
+        return retval;
+    }
+
 }

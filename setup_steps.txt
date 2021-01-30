@@ -4,6 +4,5 @@ curl -sSL https://raw.githubusercontent.com/bitnami/bitnami-docker-kafka/master/
 sudo docker-compose up -d
 
 #MariaDB docker:
-sudo docker run --name microservice-mariadb -e MYSQL_ROOT_PASSWORD=root -d mariadb:tag
-sudo docker exec -it microservice-mariadb bash
-mysql -uroot -p
+sudo docker run --name microservice-mariadb -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mariadb:latest
+sudo docker exec -it microservice-mariadb mysql -uroot -p

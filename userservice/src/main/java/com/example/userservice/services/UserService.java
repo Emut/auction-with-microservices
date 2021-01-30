@@ -1,6 +1,7 @@
 package com.example.userservice.services;
 
 import com.example.userservice.dto.UserDto;
+import com.example.userservice.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,9 +12,16 @@ public class UserService {
 
     private final List<UserDto> userDtoList = new ArrayList<>();
 
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public UserDto registerUser(UserDto userDto) {
         userDto.setId((long) userDtoList.size());
         userDtoList.add(userDto);
+        userRepository.save(userDto.getUser());
         return userDto;
     }
 
