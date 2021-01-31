@@ -61,4 +61,13 @@ public class UserDto {
         return retval;
     }
 
+    public UserDto(User user) {
+        if(user == null)
+            return;
+        this.id = user.getId();
+        this.login = user.getLogin();
+        this.name = user.getName();
+        this.password = user.getPassword();
+        this.isAdmin = user.getAdmin();
+    }
 }

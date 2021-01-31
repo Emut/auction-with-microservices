@@ -1,16 +1,15 @@
 package com.example.userservice.services;
 
 import com.example.userservice.dto.UserDto;
+import com.example.userservice.entity.User;
 import com.example.userservice.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
-
-    private final List<UserDto> userDtoList = new ArrayList<>();
 
     private final UserRepository userRepository;
 
@@ -19,24 +18,22 @@ public class UserService {
     }
 
     public UserDto registerUser(UserDto userDto) {
-        userDto.setId((long) userDtoList.size());
-        userDtoList.add(userDto);
-        userRepository.save(userDto.getUser());
-        return userDto;
+        return new UserDto(userRepository.save(userDto.getUser()));
     }
 
     public List<UserDto> getAllUsers() {
-        return userDtoList;
+        List<User> users = userRepository.findAll();
+        return users.stream().map(UserDto::new).collect(Collectors.toList());
     }
 
     public UserDto getUser(long id) {
-        return userDtoList.stream().filter(userDto -> userDto.getId().equals(id))
-                .findFirst().orElse(null);
+        return  new UserDto(userRepository.findById(id).orElse(null));
     }
 
     public UserDto login(String username, String password) {
-        return userDtoList.stream().filter(userDto -> userDto.getLogin().equals(username))
-                .filter(userDto -> userDto.getPassword().equals(password))
-                .findFirst().orElse(null);
+        User user = userRepository.findByLoginAndPassword(username, password).orElse(null);
+        if (user == null)
+            return null;
+        return new UserDto(user);
     }
 }
