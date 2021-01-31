@@ -7,3 +7,13 @@ application:
 
 server:
   port: 9100
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/ItemServiceDB?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update

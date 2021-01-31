@@ -1,5 +1,8 @@
 package com.example.inventoryservice.dto;
 
+import com.example.inventoryservice.entity.Item;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class ItemDto {
     private Long id;
     private Double price;
@@ -36,5 +39,24 @@ public class ItemDto {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @JsonIgnore
+    public Item getItem(){
+        Item retval = new Item();
+        retval.setId(id);
+        retval.setName(name);
+        retval.setPrice(price);
+        retval.setNote(note);
+        return retval;
+    }
+
+    public ItemDto(Item item) {
+        if(item == null)
+            return;
+        id = item.getId();
+        name = item.getName();
+        price = item.getPrice();
+        note = item.getNote();
     }
 }
