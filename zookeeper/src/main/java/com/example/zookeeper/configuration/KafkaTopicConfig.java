@@ -1,4 +1,4 @@
-package com.example.userservice.configuration;
+package com.example.zookeeper.configuration;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -30,17 +30,17 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic topic2() {
-        return new NewTopic("payment", 1, (short) 1);
+        return new NewTopic("payment", 6, (short) 1);
     }
 
     @Bean
     public NewTopic topic3() {
-        return new NewTopic("auction", 1, (short) 1);
+        return new NewTopic("auction", 6, (short) 1);
     }
 
     @Bean
     public NewTopic topic4() {
-        return new NewTopic("user", 1, (short) 1);
+        return new NewTopic("user", 6, (short) 1);
     }
     @Bean
     public NewTopic topic4_1() {

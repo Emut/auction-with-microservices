@@ -1,0 +1,19 @@
+kafka:
+  bootstrapAddress: localhost:9092
+
+application:
+  name: PaymentService
+  id: 0
+
+server:
+  port: 9300
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/PaymentServiceDB?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
