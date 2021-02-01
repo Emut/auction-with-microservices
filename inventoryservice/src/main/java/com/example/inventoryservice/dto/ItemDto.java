@@ -8,6 +8,7 @@ public class ItemDto {
     private Double price;
     private String name;
     private String note;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -41,6 +42,14 @@ public class ItemDto {
         this.note = note;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     @JsonIgnore
     public Item getItem(){
         Item retval = new Item();
@@ -48,6 +57,7 @@ public class ItemDto {
         retval.setName(name);
         retval.setPrice(price);
         retval.setNote(note);
+        retval.setUserId(userId);
         return retval;
     }
 
@@ -58,5 +68,6 @@ public class ItemDto {
         name = item.getName();
         price = item.getPrice();
         note = item.getNote();
+        userId = item.getUserId();
     }
 }

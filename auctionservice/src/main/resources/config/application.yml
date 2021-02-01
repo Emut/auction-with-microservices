@@ -6,7 +6,7 @@ application:
   id: 0
 
 server:
-  port: 9200
+  port: 9201
 
 
 spring:

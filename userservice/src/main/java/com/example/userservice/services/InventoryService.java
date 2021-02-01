@@ -8,10 +8,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -29,19 +26,17 @@ public class InventoryService {
     private static final String TOPIC_NAME = "inventory";
     private static final String RESPONSE_TO_TOPIC_NAME = "user_response";
     private final Gson gson = new Gson();
-    private final Map<Long, CompletableFuture<KafkaDto>> responseWaiters = new HashMap<>();
-    private final Random random = new Random();
 
     public List<ItemDto> getAllItems() {
         KafkaDto kafkaDto = new KafkaDto();
-        kafkaDto.setId(random.nextLong());
+        kafkaDto.setId(constants.getRandom().nextLong());
         kafkaDto.setOperation("getItems");
         kafkaDto.setRequest(true);
         kafkaDto.setResponseToTopic(RESPONSE_TO_TOPIC_NAME);
         kafkaDto.setHistory(constants.getApplicationName() + "---");
 
         CompletableFuture<KafkaDto> kafkaDtoCompletableFuture = new CompletableFuture<>();
-        responseWaiters.put(kafkaDto.getId(), kafkaDtoCompletableFuture);
+        constants.getResponseWaiters().put(kafkaDto.getId(), kafkaDtoCompletableFuture);
         kafkaTemplate.send(TOPIC_NAME, gson.toJson(kafkaDto));
         KafkaDto response;
         try {
@@ -69,11 +64,9 @@ public class InventoryService {
         if (kafkaDto.isRequest()) {
             return;
         }
-        if (kafkaDto.getOperation().equals("getItems")) {
-            CompletableFuture<KafkaDto> completableFuture = responseWaiters.get(kafkaDto.getId());
-            if (completableFuture != null) {
-                completableFuture.complete(kafkaDto);
-            }
+        CompletableFuture<KafkaDto> completableFuture = constants.getResponseWaiters().get(kafkaDto.getId());
+        if (completableFuture != null) {
+            completableFuture.complete(kafkaDto);
         }
     }
 }

@@ -1,5 +1,4 @@
 java -jar ./zookeeper/target/zookeeper-0.0.1-SNAPSHOT.jar --server.port=9999 &
-sleep 5
 
 java -jar ./userservice/target/userservice-0.0.1-SNAPSHOT.jar --server.port=9001 --application.id=1 &
 java -jar ./userservice/target/userservice-0.0.1-SNAPSHOT.jar --server.port=9002 --application.id=2 &

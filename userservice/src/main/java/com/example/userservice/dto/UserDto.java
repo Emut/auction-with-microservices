@@ -70,4 +70,7 @@ public class UserDto {
         this.password = user.getPassword();
         this.isAdmin = user.getAdmin();
     }
+
+    public UserDto() {
+    }
 }

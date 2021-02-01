@@ -7,6 +7,7 @@ public class KafkaDto {
     private String payload;
     private String responseToTopic;
     private String history;
+    private String errorMessage;
 
     public boolean isRequest() {
         return isRequest;
@@ -54,5 +55,13 @@ public class KafkaDto {
 
     public void setHistory(String history) {
         this.history = history;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

@@ -3,3 +3,5 @@ kafkacat -L -b localhost
 kafkacat -b localhost -t inventory
 
 kafkacat -b localhost -t user_response
+
+http://localhost:9999/api/instances
